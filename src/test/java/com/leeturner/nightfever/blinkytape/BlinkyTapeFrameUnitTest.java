@@ -1,6 +1,7 @@
 package com.leeturner.nightfever.blinkytape;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -8,6 +9,7 @@ import java.awt.*;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Tag("unit")
 public class BlinkyTapeFrameUnitTest {
 
     private Color[] colours;
@@ -64,12 +66,14 @@ public class BlinkyTapeFrameUnitTest {
     }
 
     @Test
+    @Tag("exception")
     public void whenTheNumberOfLightsAreSpecifiedInTheConstructorSpecifyingZeroLightsAnInvalidArgumentExceptionIsThrown() {
         IllegalArgumentException expected = assertThrows(IllegalArgumentException.class, () -> new BlinkyTapeFrame(0));
         assertThat(expected).hasMessageThat().isEqualTo("Invalid lightCount.  The lightCount must be greater than 0");
     }
 
     @Test
+    @Tag("exception")
     public void whenTheNumberOfLightsAreSpecifiedInTheConstructorSpecifyingANegativeNumberAnInvalidArgumentExceptionIsThrown() {
         IllegalArgumentException expected = assertThrows(IllegalArgumentException.class, () -> new BlinkyTapeFrame(-1));
         assertThat(expected).hasMessageThat().isEqualTo("Invalid lightCount.  The lightCount must be greater than 0");
@@ -85,6 +89,7 @@ public class BlinkyTapeFrameUnitTest {
     }
 
     @Test
+    @Tag("exception")
     public void whenColoursAreSpecifiedInTheConstructorButNullIsPassedANullPointerExceptionIsThrown() {
         NullPointerException expected = assertThrows(NullPointerException.class, () -> new BlinkyTapeFrame(null));
         assertThat(expected).hasMessageThat().isEqualTo("Invalid lights array. A null lights array is not allowed");
@@ -108,6 +113,7 @@ public class BlinkyTapeFrameUnitTest {
     }
 
     @Test
+    @Tag("exception")
     public void whenNullIsPassedToSetColorsANullPointerExceptionIsThrown() {
         BlinkyTapeFrame frame = new BlinkyTapeFrame();
         NullPointerException expected = assertThrows(NullPointerException.class, () -> frame.setLights(null));
@@ -131,6 +137,7 @@ public class BlinkyTapeFrameUnitTest {
 
 
     @Test
+    @Tag("exception")
     public void whenALightNumberGreaterThanTheNumberOfLightsIsPassedGetColorOfLightThrowsAnInValidArgumentException() {
         BlinkyTapeFrame frame = new BlinkyTapeFrame(this.colours);
         IllegalArgumentException expected = assertThrows(IllegalArgumentException.class, () -> frame.getColorOfLight(10));
@@ -138,6 +145,7 @@ public class BlinkyTapeFrameUnitTest {
     }
 
     @Test
+    @Tag("exception")
     public void whenALightNumberLessThanZeroIsPassedGetColorOfLightThrowsAnInValidArgumentException() {
         BlinkyTapeFrame frame = new BlinkyTapeFrame(this.colours);
         IllegalArgumentException expected = assertThrows(IllegalArgumentException.class, () -> frame.getColorOfLight(-1));
@@ -177,6 +185,7 @@ public class BlinkyTapeFrameUnitTest {
     }
 
     @Test
+    @Tag("exception")
     public void whenALightNumberGreaterThanTheNumberOfLightsIsPassedSetColorOfLightThrowsAnInValidArgumentException() {
         BlinkyTapeFrame frame = new BlinkyTapeFrame(this.colours);
         IllegalArgumentException expected = assertThrows(IllegalArgumentException.class, () -> frame.setColorOfLight(Color.RED, 10));
@@ -184,6 +193,7 @@ public class BlinkyTapeFrameUnitTest {
     }
 
     @Test
+    @Tag("exception")
     public void whenANullColorIsPassedToSetColorOfLightANullPointerExceptionIsThrown() {
         BlinkyTapeFrame frame = new BlinkyTapeFrame(this.colours);
         NullPointerException expected = assertThrows(NullPointerException.class, () -> frame.setColorOfLight(null, 1));
@@ -191,6 +201,7 @@ public class BlinkyTapeFrameUnitTest {
     }
 
     @Test
+    @Tag("exception")
     public void whenALightNumberLessThanZeroIsPassedSetColorOfLightThrowsAnInValidArgumentException() {
         BlinkyTapeFrame frame = new BlinkyTapeFrame(this.colours);
         IllegalArgumentException expected = assertThrows(IllegalArgumentException.class, () -> frame.setColorOfLight(Color.RED, -1));

@@ -1,5 +1,6 @@
 package com.leeturner.nightfever.blinkytape;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -12,6 +13,7 @@ import java.util.stream.Stream;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Tag("unit")
 public class BlinkyTapeFrameBuilderUnitTest {
 
     @Test
@@ -41,12 +43,14 @@ public class BlinkyTapeFrameBuilderUnitTest {
     }
 
     @Test
+    @Tag("exception")
     public void whenWithALightCountOfIsCalledSpecifyingZeroLightsAnInValidArgumentExceptionIsThrown() {
         IllegalArgumentException expected = assertThrows(IllegalArgumentException.class, () -> new BlinkyTapeFrameBuilder().withALightCountOf(0).build());
         assertThat(expected).hasMessageThat().isEqualTo("Invalid lightCount.  The lightCount must be greater than 0");
     }
 
     @Test
+    @Tag("exception")
     public void whenWithALightCountOfIsCalledSpecifyingANegativeNumberAnInValidArgumentExceptionIsThrown() {
         IllegalArgumentException expected = assertThrows(IllegalArgumentException.class, () -> new BlinkyTapeFrameBuilder().withALightCountOf(-1).build());
         assertThat(expected).hasMessageThat().isEqualTo("Invalid lightCount.  The lightCount must be greater than 0");
@@ -69,6 +73,7 @@ public class BlinkyTapeFrameBuilderUnitTest {
     }
 
     @Test
+    @Tag("exception")
     public void whenWithAllLightsSetToColorIsCalledWithANullColorANullPointerExceptionIsThrown() {
         NullPointerException expected = assertThrows(NullPointerException.class, () -> new BlinkyTapeFrameBuilder().withAllLightsSetToColor(null).build());
         assertThat(expected).hasMessageThat().isEqualTo("Invalid color. A null color is not allowed");
@@ -101,18 +106,21 @@ public class BlinkyTapeFrameBuilderUnitTest {
     }
 
     @Test
+    @Tag("exception")
     public void whenWithSpecificLightSetToColorIsCalledWithANullColorANullPointerExceptionIsThrown() {
         NullPointerException expected = assertThrows(NullPointerException.class, () -> new BlinkyTapeFrameBuilder().withSpecificLightSetToColor(null, 1).build());
         assertThat(expected).hasMessageThat().isEqualTo("Invalid color. A null color is not allowed");
     }
 
     @Test
+    @Tag("exception")
     public void whenWithSpecificLightSetToColorIsCalledWithAValidColorAndANegativeLightNumberAnIllegalArgumentExceptionIsThrown() {
         IllegalArgumentException expected = assertThrows(IllegalArgumentException.class, () -> new BlinkyTapeFrameBuilder().withSpecificLightSetToColor(Color.RED, -1).build());
         assertThat(expected).hasMessageThat().isEqualTo("Error trying to access nonexistent lightNumber. A negative lightNumber is not allowed");
     }
 
     @Test
+    @Tag("exception")
     public void whenWithSpecificLightSetToColorIsCalledWithAValidColorAndALightNumberGreaterThanTheNumberOfLightsAnIllegalArgumentExceptionIsThrown() {
         IllegalArgumentException expected = assertThrows(IllegalArgumentException.class, () -> new BlinkyTapeFrameBuilder().withSpecificLightSetToColor(Color.RED, 70).build());
         assertThat(expected).hasMessageThat().isEqualTo("Error trying to access nonexistent lightNumber (70). This BlinkyTapeFrame has 60 lights indexed from 0");
@@ -145,6 +153,7 @@ public class BlinkyTapeFrameBuilderUnitTest {
     }
 
     @Test
+    @Tag("exception")
     public void whenWithARangeOfLightsSetToColorIsCalledWithAnEndRangeBeforeTheStartAnIllegalArgumentExceptionIsThrown() {
         IllegalArgumentException expected = assertThrows(IllegalArgumentException.class, () -> new BlinkyTapeFrameBuilder().withRangeOfLightsSetToColor(Color.GREEN, 5, 2).build());
         assertThat(expected).hasMessageThat().isEqualTo("Error setting range of colors. The end range must be after the start");
