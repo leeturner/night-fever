@@ -1,13 +1,13 @@
 package com.leeturner.nightfever.blinkytape;
 
+import java.awt.*;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
-import java.awt.*;
-
 public class BlinkyTapeControllerIntegrationTest {
 
-    public static final String DEFAULT_COM_PORT = "/dev/tty.usbmodem1421";
+    public static final String DEFAULT_COM_PORT = "/dev/tty.usbmodem1412201";
 
     BlinkyTapeController controller;
 
